@@ -12,7 +12,7 @@
     "format:check": "prettier --check .",
     "typecheck": "npm run typecheck --workspace=@excodelabs/ui",
     "build": "npm run build --workspace=@excodelabs/ui",
-    "publish:ui": "npm publish --workspace=@excodelabs/ui",
+    "publish:ui": "npm run build && npm publish --workspace=@excodelabs/ui",
     "prepare": "husky"
   },
   "devDependencies": {
