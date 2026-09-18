@@ -1,10 +1,10 @@
-All notable changes to `@ecl-shared/ui` are documented here.
+All notable changes to `@excodelabs/ui` are documented here.
 
 ## [1.0.0] - 2026-09-18
 
 ### Added
 
-- Initial `@ecl-shared/ui` library setup.
+- Initial `@excodelabs/ui` library setup.
 - React and TypeScript configuration.
 - Vite library build configuration.
 - Tailwind CSS integration.

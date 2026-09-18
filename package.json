@@ -6,11 +6,11 @@
     "packages/*"
   ],
   "scripts": {
-    "lint": "npm run lint --workspace=@ecl-shared/ui",
+    "lint": "npm run lint --workspace=@excodelabs/ui",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "npm run typecheck --workspace=@ecl-shared/ui",
-    "build": "npm run build --workspace=@ecl-shared/ui",
+    "typecheck": "npm run typecheck --workspace=@excodelabs/ui",
+    "build": "npm run build --workspace=@excodelabs/ui",
     "prepare": "husky"
   },
   "devDependencies": {
