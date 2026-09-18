@@ -1,0 +1,15 @@
+{
+  "name": "ecl-shared",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "lint": "npm run lint --workspace=@ecl-shared/ui",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "npm run typecheck --workspace=@ecl-shared/ui",
+    "build": "npm run build --workspace=@ecl-shared/ui",
+    "prepare": "husky"
+  }
+}
