@@ -2,54 +2,93 @@ name: Publish
 
 on:
   push:
-    tags:
-      - "v*.*.*"
+    branches:
+      - main
 
 permissions:
-  contents: read
+  contents: write
   id-token: write
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           registry-url: "https://registry.npmjs.org"
 
       - name: Install dependencies
         run: npm ci
 
+      - name: Read package version
+        id: package
+        run: |
+          VERSION=$(node -p "require('./packages/ui/package.json').version")
+
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+          echo "Package version: $VERSION"
+
+      - name: Check if version is already released
+        id: check
+        run: |
+          VERSION="${{ steps.package.outputs.version }}"
+
+          if git ls-remote --exit-code --tags origin "refs/tags/v$VERSION" >/dev/null 2>&1; then
+            echo "Tag v$VERSION already exists."
+            echo "release=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Tag v$VERSION does not exist."
+            echo "release=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Lint
+        if: steps.check.outputs.release == 'true'
         run: npm run lint
 
       - name: Format check
+        if: steps.check.outputs.release == 'true'
         run: npm run format:check
 
       - name: Typecheck
+        if: steps.check.outputs.release == 'true'
         run: npm run typecheck
 
       - name: Build
+        if: steps.check.outputs.release == 'true'
         run: npm run build
 
       - name: Verify package version
+        if: steps.check.outputs.release == 'true'
         run: |
-          PACKAGE_VERSION=$(node -p "require('./packages/ui/package.json').version")
-          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          VERSION="${{ steps.package.outputs.version }}"
 
-          echo "Package version: $PACKAGE_VERSION"
-          echo "Tag version: $TAG_VERSION"
+          echo "Package version: $VERSION"
 
-          if [ "$PACKAGE_VERSION" != "$TAG_VERSION" ]; then
-            echo "ERROR: package.json version does not match Git tag."
+          if [ -z "$VERSION" ]; then
+            echo "ERROR: Package version is empty."
             exit 1
           fi
 
-      - name: Publish
+      - name: Create release tag
+        if: steps.check.outputs.release == 'true'
+        run: |
+          VERSION="${{ steps.package.outputs.version }}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git tag "v$VERSION"
+          git push origin "v$VERSION"
+
+      - name: Publish to npm
+        if: steps.check.outputs.release == 'true'
         run: npm publish --workspace=@excodelabs/ui --access public
