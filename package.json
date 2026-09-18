@@ -1,6 +1,7 @@
 {
   "name": "ecl-shared",
   "private": true,
+  "type": "module",
   "workspaces": [
     "packages/*"
   ],
@@ -11,5 +12,12 @@
     "typecheck": "npm run typecheck --workspace=@ecl-shared/ui",
     "build": "npm run build --workspace=@ecl-shared/ui",
     "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^21.2.2",
+    "@commitlint/config-conventional": "^21.2.2",
+    "eslint": "^10.10.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.9.8"
   }
 }
