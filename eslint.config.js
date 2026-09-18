@@ -7,9 +7,9 @@ import prettier from "eslint-plugin-prettier/recommended";
 import { defineConfig, globalIgnores } from "eslint/config";
 
 export default defineConfig([
-  globalIgnores(["dist"]),
+  globalIgnores(["**/dist/**", "**/node_modules/**", "**/build/**", "**/coverage/**"]),
   {
-    ignores: ["**/dist/**", "**/node_modules/**"],
+    ignores: ["**/dist/**", "**/node_modules/**", "**/build/**", "**/coverage/**"],
     files: ["**/*.{ts,tsx}"],
     extends: [
       js.configs.recommended,
@@ -29,5 +29,8 @@ export default defineConfig([
       "react-hooks/exhaustive-deps": "warn",
     },
   },
-  prettier,
+  {
+    files: ["**/*.{ts,tsx}"],
+    ...prettier,
+  },
 ]);
