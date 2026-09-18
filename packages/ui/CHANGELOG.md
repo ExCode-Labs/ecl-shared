@@ -1,3 +1,30 @@
+## [1.0.4] - 2026-09-18
+
+### Fixed
+
+- Injected the generated UI stylesheet into library consumers automatically.
+- Added `vite-plugin-lib-inject-css` to preserve the CSS import in the built entrypoint.
+- Bumped `@excodelabs/ui` from `1.0.3` to `1.0.4`.
+
+## [1.0.3] - 2026-09-18
+
+### Fixed
+
+- Bumped `@excodelabs/ui` version from `1.0.2` to `1.0.3`.
+- Fixed build loaction for types and map files
+- Updated Git URL
+- Changed css file name for build
+- Added "react/jsx-runtime" and "react/jsx-dev-runtime" to vite config.
+
+## [1.0.2] - 2026-09-18
+
+### Fixed
+
+- Bumped `@excodelabs/ui` version from `1.0.1` to `1.0.2`.
+- Fixed build loaction for types and map files
+- Updated Git URL
+- Changed css file name for build
+
 ## [1.0.1] - 2026-09-18
 
 ### Changed
@@ -7,9 +34,6 @@
 - Configured npm Trusted Publishing using GitHub Actions OIDC.
 - Added automated release tagging based on the package version.
 - Added CI checks for linting, formatting, typechecking, and build validation.
-- Fixed build loaction for types and map files
-- Updated Git URL
-- Changed css file name for build
 
 ## [1.0.0] - 2026-09-18
 
