@@ -1,3 +1,12 @@
+## [1.0.2] - 2026-09-18
+
+### Fixed
+
+- Bumped `@excodelabs/ui` version from `1.0.0` to `1.0.2`.
+- Fixed build loaction for types and map files
+- Updated Git URL
+- Changed css file name for build
+
 ## [1.0.1] - 2026-09-18
 
 ### Changed
