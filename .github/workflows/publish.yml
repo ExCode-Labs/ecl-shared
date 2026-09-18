@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   publish:
@@ -52,5 +53,3 @@ jobs:
 
       - name: Publish
         run: npm publish --workspace=@excodelabs/ui --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

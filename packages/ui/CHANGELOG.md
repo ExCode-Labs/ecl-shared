@@ -1,4 +1,12 @@
-All notable changes to `@excodelabs/ui` are documented here.
+## [1.0.1] - 2026-09-18
+
+### Changed
+
+- Bumped `@excodelabs/ui` version from `1.0.0` to `1.0.1`.
+- Added GitHub Actions workflow for automated npm publishing.
+- Configured npm Trusted Publishing using GitHub Actions OIDC.
+- Added automated release tagging based on the package version.
+- Added CI checks for linting, formatting, typechecking, and build validation.
 
 ## [1.0.0] - 2026-09-18
 
