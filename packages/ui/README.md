@@ -1,4 +1,4 @@
-# @ecl-shared/ui
+# @excodelabs/ui
 
 Shared UI component library for the Todo App.
 
@@ -13,7 +13,7 @@ Built with:
 ## Installation
 
 ```bash
-npm install @ecl-shared/ui
+npm install @excodelabs/ui
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ npm install @ecl-shared/ui
 Import the required component:
 
 ```tsx
-import { Button } from "@ecl-shared/ui";
+import { Button } from "@excodelabs/ui";
 ```
 
 ### Button
