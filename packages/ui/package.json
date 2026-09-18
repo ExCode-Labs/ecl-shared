@@ -8,7 +8,7 @@
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ExCode-Labs/ecl-shared"
+    "url": "git+https://github.com/ExCode-Labs/ecl-shared"
   },
   "exports": {
     ".": {
