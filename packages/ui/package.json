@@ -1,14 +1,14 @@
 {
   "name": "@excodelabs/ui",
   "private": false,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ExCode-Labs/ecl-shared"
+    "url": "git+https://github.com/ExCode-Labs/ecl-shared.git"
   },
   "exports": {
     ".": {
@@ -23,7 +23,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc -b && vite build",
+    "build": "vite build && tsc -b",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
