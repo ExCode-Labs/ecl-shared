@@ -1,3 +1,10 @@
+## [1.0.5] - 2026-09-19
+
+### Changed
+
+- Updated Button `ghost` variant styling to include `hover:border-border-hover`.
+- Bumped `@excodelabs/ui` from `1.0.4` to `1.0.5`.
+
 ## [1.0.4] - 2026-09-18
 
 ### Fixed
