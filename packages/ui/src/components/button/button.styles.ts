@@ -20,7 +20,7 @@ export const buttonVariants = cva(
       variant: {
         primary: [
           "bg-primary",
-          "text-white",
+          "text-surface",
           "hover:bg-primary-hover",
           "active:bg-primary-pressed",
         ],
@@ -34,7 +34,12 @@ export const buttonVariants = cva(
           "hover:bg-background",
         ],
 
-        ghost: ["bg-transparent", "text-text-primary", "hover:bg-background"],
+        ghost: [
+          "bg-transparent",
+          "text-text-primary",
+          "hover:border-border-hover",
+          "hover:bg-background",
+        ],
       },
 
       size: {
