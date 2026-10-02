@@ -1,3 +1,10 @@
+## [1.0.] - 2026-10-04
+
+### Added
+
+- Added `loading` to Button component to include `loading-state`.
+- Bumped `@excodelabs/ui` from `1.0.5` to `1.0.6`.
+
 ## [1.0.5] - 2026-09-19
 
 ### Changed

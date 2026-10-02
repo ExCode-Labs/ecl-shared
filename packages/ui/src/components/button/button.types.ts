@@ -3,4 +3,6 @@ import type { VariantProps } from "class-variance-authority";
 import { buttonVariants } from "./button.styles";
 
 export interface ButtonProps
-  extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {}
+  extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
+  loading?: boolean;
+}
