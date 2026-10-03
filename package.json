@@ -13,6 +13,7 @@
     "typecheck": "npm run typecheck --workspace=@excodelabs/ui",
     "build": "npm run build --workspace=@excodelabs/ui",
     "publish:ui": "npm run build && npm publish --workspace=@excodelabs/ui",
+    "link:ui": "npm link --workspace=@excodelabs/ui",
     "prepare": "husky"
   },
   "devDependencies": {

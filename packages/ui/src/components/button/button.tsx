@@ -1,18 +1,48 @@
 import { cn } from "../../lib/utils";
-import { buttonVariants } from "./button.styles";
+
+import { buttonSpinnerVariants, buttonVariants } from "./button.styles";
+
 import type { ButtonProps } from "./button.types";
 
-export function Button({ className, variant, size, ...props }: ButtonProps) {
+export function Button({
+  className,
+  variant = "primary",
+  size = "md",
+  loading = false,
+  fullWidth = false,
+  disabled,
+  children,
+  type = "button",
+  ...props
+}: ButtonProps) {
+  const isDisabled = disabled || loading;
+
   return (
     <button
+      type={type}
       className={cn(
         buttonVariants({
           variant,
           size,
+          fullWidth,
         }),
         className,
       )}
+      disabled={isDisabled}
+      aria-busy={loading}
+      data-loading={loading || undefined}
       {...props}
-    />
+    >
+      {children}
+
+      {loading && (
+        <span
+          className="button-spinner absolute inset-0 z-10 flex items-center justify-center rounded-[inherit] bg-inherit"
+          aria-hidden="true"
+        >
+          <span className={cn(buttonSpinnerVariants({ size }))} />
+        </span>
+      )}
+    </button>
   );
 }

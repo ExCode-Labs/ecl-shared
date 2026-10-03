@@ -18,60 +18,146 @@ npm install @excodelabs/ui
 
 ## Usage
 
-Import the required component:
+Import the components you need:
 
 ```tsx
-import { Button } from "@excodelabs/ui";
+import {
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+  Checkbox,
+  Input,
+  TabGroup,
+  TabPanel,
+  Textarea,
+  ToastProvider,
+  Toaster,
+  Toggle,
+  useToast,
+} from "@excodelabs/ui";
 ```
 
 ### Button
 
 ```tsx
-<Button>Add Todo</Button>
+<Button>Add todo</Button>
 ```
 
-Available variants:
+Choose a style, size, or loading state with props:
 
 ```tsx
 <Button variant="primary">Primary</Button>
+<Button variant="secondary">Secondary</Button>
 <Button variant="outline">Outline</Button>
 <Button variant="ghost">Ghost</Button>
-```
-
-Available sizes:
-
-```tsx
+<Button variant="destructive">Delete</Button>
+<Button variant="link">Learn more</Button>
 <Button size="sm">Small</Button>
-<Button size="md">Medium</Button>
-<Button size="lg">Large</Button>
+<Button size="lg" loading>Saving...</Button>
 ```
 
-Disabled:
+### Input
 
 ```tsx
-<Button disabled>Add Todo</Button>
+<Input
+  id="email"
+  label="Email"
+  type="email"
+  placeholder="you@example.com"
+  helperText="We will only use this to contact you."
+/>
 ```
 
-## Design System
+Show a validation message with `state="error"` and `errorText="..."`.
 
-The library uses the Todo App design system with Tailwind colors.
+### Textarea
 
-| Purpose         | Tailwind     |
-| --------------- | ------------ |
-| Primary         | `indigo-600` |
-| Primary Hover   | `indigo-700` |
-| Primary Pressed | `indigo-800` |
-| Primary Light   | `indigo-50`  |
-| Focus           | `indigo-200` |
-| Text Primary    | `slate-900`  |
-| Text Secondary  | `slate-600`  |
-| Text Muted      | `slate-400`  |
-| Border          | `slate-200`  |
-| Background      | `slate-50`   |
-| Surface         | `white`      |
-| Success         | `green-600`  |
-| Warning         | `amber-500`  |
-| Error           | `red-600`    |
+Use it as a controlled field to show a character count:
+
+```tsx
+import { useState } from "react";
+import { Textarea } from "@excodelabs/ui";
+
+function DescriptionField() {
+  const [description, setDescription] = useState("");
+
+  return (
+    <Textarea
+      id="description"
+      value={description}
+      onChange={(event) => setDescription(event.target.value)}
+      maxLength={5000}
+      showLimit
+    />
+  );
+}
+```
+
+### Checkbox and Toggle
+
+```tsx
+<>
+  <Checkbox label="Send me updates" description="Occasional product news." />
+  <Toggle aria-label="Enable reminders" defaultChecked />
+</>
+```
+
+### Tabs
+
+```tsx
+<TabGroup
+  defaultValue="details"
+  items={[
+    { value: "details", label: "Details" },
+    { value: "activity", label: "Activity" },
+  ]}
+>
+  <TabPanel value="details">Todo details</TabPanel>
+  <TabPanel value="activity">Recent activity</TabPanel>
+</TabGroup>
+```
+
+### Card
+
+```tsx
+<Card variant="outlined" padding="md">
+  <CardHeader>
+    <CardTitle>My todo</CardTitle>
+    <CardDescription>Finish the project notes.</CardDescription>
+  </CardHeader>
+  <CardContent>Due Friday</CardContent>
+</Card>
+```
+
+### Toast
+
+Place the provider and toaster around your app:
+
+```tsx
+<ToastProvider>
+  <App />
+  <Toaster />
+</ToastProvider>
+```
+
+Then show a toast from a component inside the provider:
+
+```tsx
+function SaveButton() {
+  const { toast } = useToast();
+
+  return <Button onClick={() => toast({ title: "Saved", variant: "success" })}>Save</Button>;
+}
+```
+
+## Branding Colors
+
+The default brand palette is indigo. To change it for this library, edit the `--color-brand-*` mappings in `src/styles.css`. For example, change `var(--color-indigo-600)` to `var(--color-blue-600)` and do the same for shades `50` through `950`.
+
+The primary colors use the brand shades: `brand-600` for primary, `brand-700` for hover, `brand-800` for pressed, `brand-50` for the light background, and `brand-200` for focus. Updating the brand mappings changes these together; the text, surface, success, warning, and error colors stay as they are.
 
 ## Development
 

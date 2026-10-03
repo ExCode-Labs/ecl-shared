@@ -1,3 +1,26 @@
+## [1.1.0] - 2026-10-03
+
+### Added
+
+- Added Input, Textarea, Checkbox, Toggle, Tabs, Card, and Toast components.
+- Added examples for using components and changing the brand palette.
+
+### Changed
+
+- Expanded Button variants and shared design-system styles.
+- Bumped `@excodelabs/ui` from `1.0.5` to `1.1.0`.
+
+### Fixed
+
+- Fixed lint and TypeScript declaration issues in the new components.
+
+## [1.0.5] - 2026-09-19
+
+### Changed
+
+- Updated Button `ghost` variant styling to include `hover:border-border-hover`.
+- Bumped `@excodelabs/ui` from `1.0.4` to `1.0.5`.
+
 ## [1.0.4] - 2026-09-18
 
 ### Fixed
