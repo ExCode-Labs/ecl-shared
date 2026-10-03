@@ -37,14 +37,11 @@ export function Button({
 
       {loading && (
         <span
-          className={cn(
-            "button-spinner",
-            buttonSpinnerVariants({
-              size,
-            }),
-          )}
+          className="button-spinner absolute inset-0 z-10 flex items-center justify-center rounded-[inherit] bg-inherit"
           aria-hidden="true"
-        />
+        >
+          <span className={cn(buttonSpinnerVariants({ size }))} />
+        </span>
       )}
     </button>
   );

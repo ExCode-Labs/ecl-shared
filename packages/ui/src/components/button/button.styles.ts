@@ -118,20 +118,7 @@ export const buttonVariants = cva(
 );
 
 export const buttonSpinnerVariants = cva(
-  [
-    "absolute",
-    "left-1/2",
-    "top-1/2",
-    "-translate-x-1/2",
-    "-translate-y-1/2",
-    "animate-spin",
-    "rounded-full",
-    "border-2",
-    "bg-inherit",
-    "z-10",
-    "border-current",
-    "border-t-transparent",
-  ],
+  ["animate-spin", "rounded-full", "border-2", "border-current", "border-t-transparent"],
   {
     variants: {
       size: {
