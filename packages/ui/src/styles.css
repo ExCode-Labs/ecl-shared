@@ -1,33 +1,486 @@
 @import "tailwindcss";
 
-@theme {
-  /* primary */
-  --color-primary: var(--color-indigo-600);
-  --color-primary-hover: var(--color-indigo-700);
-  --color-primary-pressed: var(--color-indigo-800);
-  --color-primary-light: var(--color-indigo-50);
-  --color-primary-focus: var(--color-indigo-200);
+/* =========================================================
+   DESIGN SYSTEM THEME
+   ========================================================= */
 
-  /* text */
+@theme {
+  /* =========================================================
+     BRAND PALETTE
+
+     Default: Indigo
+     Change these mappings per project to rebrand the UI.
+     ========================================================= */
+
+  --color-brand-50: var(--color-indigo-50);
+  --color-brand-100: var(--color-indigo-100);
+  --color-brand-200: var(--color-indigo-200);
+  --color-brand-300: var(--color-indigo-300);
+  --color-brand-400: var(--color-indigo-400);
+  --color-brand-500: var(--color-indigo-500);
+  --color-brand-600: var(--color-indigo-600);
+  --color-brand-700: var(--color-indigo-700);
+  --color-brand-800: var(--color-indigo-800);
+  --color-brand-900: var(--color-indigo-900);
+  --color-brand-950: var(--color-indigo-950);
+
+  /* =========================================================
+     PRIMARY
+     ========================================================= */
+
+  --color-primary: var(--color-brand-600);
+  --color-primary-hover: var(--color-brand-700);
+  --color-primary-pressed: var(--color-brand-800);
+  --color-primary-light: var(--color-brand-50);
+  --color-primary-focus: var(--color-brand-200);
+
+  /* =========================================================
+     TEXT
+     ========================================================= */
+
   --color-text-primary: var(--color-slate-900);
   --color-text-secondary: var(--color-slate-600);
   --color-text-muted: var(--color-slate-400);
+  --color-text-disabled: var(--color-slate-400);
+  --color-text-inverse: var(--color-white);
 
-  /* border */
+  /* =========================================================
+     BORDER
+     ========================================================= */
+
   --color-border: var(--color-slate-200);
   --color-border-hover: var(--color-slate-300);
+  --color-border-focus: var(--color-brand-500);
+  --color-border-disabled: var(--color-slate-200);
 
-  /* background */
+  /* =========================================================
+     BACKGROUND / SURFACE
+     ========================================================= */
+
   --color-background: var(--color-slate-50);
   --color-surface: var(--color-white);
+  --color-surface-hover: var(--color-slate-50);
+  --color-surface-disabled: var(--color-slate-100);
+  --color-surface-selected: var(--color-brand-50);
 
-  /* status */
+  /* =========================================================
+     SUCCESS
+     ========================================================= */
+
   --color-success: var(--color-green-600);
+  --color-success-hover: var(--color-green-700);
+  --color-success-pressed: var(--color-green-800);
   --color-success-light: var(--color-green-50);
+  --color-success-border: var(--color-green-500);
+
+  /* =========================================================
+     WARNING
+     ========================================================= */
 
   --color-warning: var(--color-amber-500);
+  --color-warning-hover: var(--color-amber-600);
+  --color-warning-pressed: var(--color-amber-700);
   --color-warning-light: var(--color-amber-50);
+  --color-warning-border: var(--color-amber-500);
+
+  /* =========================================================
+     ERROR
+     ========================================================= */
 
   --color-error: var(--color-red-600);
+  --color-error-hover: var(--color-red-700);
+  --color-error-pressed: var(--color-red-800);
   --color-error-light: var(--color-red-50);
+  --color-error-border: var(--color-red-500);
+
+  /* =========================================================
+     INFO
+     ========================================================= */
+
+  --color-info: var(--color-blue-600);
+  --color-info-hover: var(--color-blue-700);
+  --color-info-pressed: var(--color-blue-800);
+  --color-info-light: var(--color-blue-50);
+  --color-info-border: var(--color-blue-500);
+
+  /* =========================================================
+     RADIUS
+     ========================================================= */
+
+  --radius-control-sm: 0.375rem;
+  --radius-control: 0.5rem;
+  --radius-control-lg: 0.625rem;
+
+  --radius-card: 0.75rem;
+  --radius-card-lg: 1rem;
+
+  /* =========================================================
+     FOCUS
+     ========================================================= */
+
+  --color-focus-ring: var(--color-brand-500);
+  --color-focus-ring-light: var(--color-brand-200);
+
+  /* =========================================================
+     SHADOW
+     ========================================================= */
+
+  --shadow-control: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+  --shadow-control-focus: 0 0 0 3px var(--color-focus-ring-light);
+
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+  /* =========================================================
+     TRANSITION
+     ========================================================= */
+
+  --ease-ui: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* =========================================================
+   SYSTEM DARK MODE
+
+   Dark mode is used automatically only when:
+   - system preference is dark
+   - no explicit .light-theme or .dark-theme exists on root
+
+   Explicit theme classes always take priority.
+   ========================================================= */
+
+@media (prefers-color-scheme: dark) {
+  :root:not(.light-theme):not(.dark-theme) {
+    /* =======================================================
+       PRIMARY
+       ======================================================= */
+
+    --color-primary: var(--color-brand-500);
+    --color-primary-hover: var(--color-brand-400);
+    --color-primary-pressed: var(--color-brand-300);
+    --color-primary-light: var(--color-brand-950);
+    --color-primary-focus: var(--color-brand-800);
+
+    /* =======================================================
+       TEXT
+       ======================================================= */
+
+    --color-text-primary: var(--color-slate-100);
+    --color-text-secondary: var(--color-slate-300);
+    --color-text-muted: var(--color-slate-500);
+    --color-text-disabled: var(--color-slate-600);
+    --color-text-inverse: var(--color-slate-950);
+
+    /* =======================================================
+       BORDER
+       ======================================================= */
+
+    --color-border: var(--color-slate-700);
+    --color-border-hover: var(--color-slate-600);
+    --color-border-focus: var(--color-brand-500);
+    --color-border-disabled: var(--color-slate-800);
+
+    /* =======================================================
+       BACKGROUND / SURFACE
+       ======================================================= */
+
+    --color-background: var(--color-slate-950);
+    --color-surface: var(--color-slate-900);
+    --color-surface-hover: var(--color-slate-800);
+    --color-surface-disabled: var(--color-slate-800);
+    --color-surface-selected: var(--color-brand-950);
+
+    /* =======================================================
+       SUCCESS
+       ======================================================= */
+
+    --color-success: var(--color-green-500);
+    --color-success-hover: var(--color-green-400);
+    --color-success-pressed: var(--color-green-300);
+    --color-success-light: var(--color-green-950);
+    --color-success-border: var(--color-green-500);
+
+    /* =======================================================
+       WARNING
+       ======================================================= */
+
+    --color-warning: var(--color-amber-400);
+    --color-warning-hover: var(--color-amber-300);
+    --color-warning-pressed: var(--color-amber-200);
+    --color-warning-light: var(--color-amber-950);
+    --color-warning-border: var(--color-amber-400);
+
+    /* =======================================================
+       ERROR
+       ======================================================= */
+
+    --color-error: var(--color-red-500);
+    --color-error-hover: var(--color-red-400);
+    --color-error-pressed: var(--color-red-300);
+    --color-error-light: var(--color-red-950);
+    --color-error-border: var(--color-red-500);
+
+    /* =======================================================
+       INFO
+       ======================================================= */
+
+    --color-info: var(--color-blue-500);
+    --color-info-hover: var(--color-blue-400);
+    --color-info-pressed: var(--color-blue-300);
+    --color-info-light: var(--color-blue-950);
+    --color-info-border: var(--color-blue-500);
+
+    /* =======================================================
+       FOCUS
+       ======================================================= */
+
+    --color-focus-ring: var(--color-brand-400);
+    --color-focus-ring-light: var(--color-brand-800);
+
+    /* =======================================================
+       SHADOW
+       ======================================================= */
+
+    --shadow-control: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+    --shadow-control-focus: 0 0 0 3px var(--color-focus-ring-light);
+
+    --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  }
+}
+
+/* =========================================================
+   FORCE LIGHT THEME
+
+   Can be applied to any element or parent.
+   Descendants inherit the light semantic tokens.
+   Nested .dark-theme can override it.
+   ========================================================= */
+
+.light-theme {
+  color-scheme: light;
+
+  /* =======================================================
+     PRIMARY
+     ======================================================= */
+
+  --color-primary: var(--color-brand-600);
+  --color-primary-hover: var(--color-brand-700);
+  --color-primary-pressed: var(--color-brand-800);
+  --color-primary-light: var(--color-brand-50);
+  --color-primary-focus: var(--color-brand-200);
+
+  /* =======================================================
+     TEXT
+     ======================================================= */
+
+  --color-text-primary: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-600);
+  --color-text-muted: var(--color-slate-400);
+  --color-text-disabled: var(--color-slate-400);
+  --color-text-inverse: var(--color-white);
+
+  /* =======================================================
+     BORDER
+     ======================================================= */
+
+  --color-border: var(--color-slate-200);
+  --color-border-hover: var(--color-slate-300);
+  --color-border-focus: var(--color-brand-500);
+  --color-border-disabled: var(--color-slate-200);
+
+  /* =======================================================
+     BACKGROUND / SURFACE
+     ======================================================= */
+
+  --color-background: var(--color-slate-50);
+  --color-surface: var(--color-white);
+  --color-surface-hover: var(--color-slate-50);
+  --color-surface-disabled: var(--color-slate-100);
+  --color-surface-selected: var(--color-brand-50);
+
+  /* =======================================================
+     SUCCESS
+     ======================================================= */
+
+  --color-success: var(--color-green-600);
+  --color-success-hover: var(--color-green-700);
+  --color-success-pressed: var(--color-green-800);
+  --color-success-light: var(--color-green-50);
+  --color-success-border: var(--color-green-500);
+
+  /* =======================================================
+     WARNING
+     ======================================================= */
+
+  --color-warning: var(--color-amber-500);
+  --color-warning-hover: var(--color-amber-600);
+  --color-warning-pressed: var(--color-amber-700);
+  --color-warning-light: var(--color-amber-50);
+  --color-warning-border: var(--color-amber-500);
+
+  /* =======================================================
+     ERROR
+     ======================================================= */
+
+  --color-error: var(--color-red-600);
+  --color-error-hover: var(--color-red-700);
+  --color-error-pressed: var(--color-red-800);
+  --color-error-light: var(--color-red-50);
+  --color-error-border: var(--color-red-500);
+
+  /* =======================================================
+     INFO
+     ======================================================= */
+
+  --color-info: var(--color-blue-600);
+  --color-info-hover: var(--color-blue-700);
+  --color-info-pressed: var(--color-blue-800);
+  --color-info-light: var(--color-blue-50);
+  --color-info-border: var(--color-blue-500);
+
+  /* =======================================================
+     FOCUS
+     ======================================================= */
+
+  --color-focus-ring: var(--color-brand-500);
+  --color-focus-ring-light: var(--color-brand-200);
+
+  /* =======================================================
+     SHADOW
+     ======================================================= */
+
+  --shadow-control: 0 1px 2px 0 rgb(15 23 42 / 0.04);
+
+  --shadow-control-focus: 0 0 0 3px var(--color-focus-ring-light);
+
+  --shadow-card: 0 1px 3px 0 rgb(15 23 42 / 0.05), 0 1px 2px -1px rgb(15 23 42 / 0.05);
+}
+
+/* =========================================================
+   FORCE DARK THEME
+
+   Can be applied to any element or parent.
+   Descendants inherit the dark semantic tokens.
+   Nested .light-theme can override it.
+   ========================================================= */
+
+.dark-theme {
+  color-scheme: dark;
+
+  /* =======================================================
+     PRIMARY
+     ======================================================= */
+
+  --color-primary: var(--color-brand-500);
+  --color-primary-hover: var(--color-brand-400);
+  --color-primary-pressed: var(--color-brand-300);
+  --color-primary-light: var(--color-brand-950);
+  --color-primary-focus: var(--color-brand-800);
+
+  /* =======================================================
+     TEXT
+     ======================================================= */
+
+  --color-text-primary: var(--color-slate-100);
+  --color-text-secondary: var(--color-slate-300);
+  --color-text-muted: var(--color-slate-500);
+  --color-text-disabled: var(--color-slate-600);
+  --color-text-inverse: var(--color-slate-950);
+
+  /* =======================================================
+     BORDER
+     ======================================================= */
+
+  --color-border: var(--color-slate-700);
+  --color-border-hover: var(--color-slate-600);
+  --color-border-focus: var(--color-brand-500);
+  --color-border-disabled: var(--color-slate-800);
+
+  /* =======================================================
+     BACKGROUND / SURFACE
+     ======================================================= */
+
+  --color-background: var(--color-slate-950);
+  --color-surface: var(--color-slate-900);
+  --color-surface-hover: var(--color-slate-800);
+  --color-surface-disabled: var(--color-slate-800);
+  --color-surface-selected: var(--color-brand-950);
+
+  /* =======================================================
+     SUCCESS
+     ======================================================= */
+
+  --color-success: var(--color-green-500);
+  --color-success-hover: var(--color-green-400);
+  --color-success-pressed: var(--color-green-300);
+  --color-success-light: var(--color-green-950);
+  --color-success-border: var(--color-green-500);
+
+  /* =======================================================
+     WARNING
+     ======================================================= */
+
+  --color-warning: var(--color-amber-400);
+  --color-warning-hover: var(--color-amber-300);
+  --color-warning-pressed: var(--color-amber-200);
+  --color-warning-light: var(--color-amber-950);
+  --color-warning-border: var(--color-amber-400);
+
+  /* =======================================================
+     ERROR
+     ======================================================= */
+
+  --color-error: var(--color-red-500);
+  --color-error-hover: var(--color-red-400);
+  --color-error-pressed: var(--color-red-300);
+  --color-error-light: var(--color-red-950);
+  --color-error-border: var(--color-red-500);
+
+  /* =======================================================
+     INFO
+     ======================================================= */
+
+  --color-info: var(--color-blue-500);
+  --color-info-hover: var(--color-blue-400);
+  --color-info-pressed: var(--color-blue-300);
+  --color-info-light: var(--color-blue-950);
+  --color-info-border: var(--color-blue-500);
+
+  /* =======================================================
+     FOCUS
+     ======================================================= */
+
+  --color-focus-ring: var(--color-brand-400);
+  --color-focus-ring-light: var(--color-brand-800);
+
+  /* =======================================================
+     SHADOW
+     ======================================================= */
+
+  --shadow-control: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+
+  --shadow-control-focus: 0 0 0 3px var(--color-focus-ring-light);
+
+  --shadow-card: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+}
+
+/* =========================================================
+   TOAST PROGRESS
+   ========================================================= */
+
+@keyframes toast-progress {
+  from {
+    transform: scaleX(1);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.animate-toast-progress {
+  animation-name: toast-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  transform-origin: left;
 }
